@@ -1,0 +1,20 @@
+server {
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/cookietempleuser/mlf_core_website/mlf_core_website.sock;
+    }
+}
+
+server {
+    if ($host = mlf-core.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = www.mlf-core.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    server_name mlf-core.com www.mlf-core.com;
+    return 301 https://$host$request_uri;
+}

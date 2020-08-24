@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve mlf_core_website
+After=network.target
+
+[Service]
+User=cookietempleuser
+Group=www-data
+WorkingDirectory=/home/cookietempleuser/mlf_core_website
+Environment="PATH=/home/cookietempleuser/mlf_core_website/dpenv/bin"
+ExecStart=/home/cookietempleuser/mlf_core_website/dpenv/bin/gunicorn --workers 3 --bind unix:mlf_core_website.sock -m 007 mlf_core_website.app:app
+
+[Install]
+WantedBy=multi-user.target
