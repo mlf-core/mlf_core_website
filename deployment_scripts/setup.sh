@@ -2,12 +2,6 @@
 # Reference:
 # https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
 
-apt-get update
-
-pip3 install gunicorn
-
-python3 setup.py clean --all install
-
 cp /home/cookietempleuser/mlf_core_website/deployment_scripts/mlf_core_website.service \
 /etc/systemd/system/mlf_core_website.service
 
