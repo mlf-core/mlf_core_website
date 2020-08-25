@@ -1,6 +1,6 @@
 //
-// nf-core.js
-// Custom javascript for the nf-core website
+// mlf-core.js
+// Custom javascript for the mlf-core website
 //
 
 $(function () {
@@ -15,7 +15,7 @@ $(function () {
     // Function to switch CSS theme file
     $('.theme-switcher label').click(function(){
         var theme = $(this).find('input').val();
-        var newlink = '/assets/css/nf-core-'+theme+'.css';
+        var newlink = '/assets/css/mlf-core-'+theme+'.css';
         $('#theme-stylesheet').attr('href', newlink);
         document.cookie = 'nfcoretheme='+theme+'; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/';
     });
