@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Templates of mlf-core</title>
+    <meta name="description" content="The mlf-core Website">
+    <meta name="author" content="Lukas Heumos">
+
+    <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/assets/css/code_highlighting/github.css" rel="stylesheet">
+    <!-- Other JS -->
+    <script src="../static/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/assets/js/popper.min.js"></script>
+    <script src="../static/assets/js/bootstrap.min.js"></script>
+    <script src="../static/assets/js/highlight.pack.js"></script>
+    <!-- Page-specific CSS and JS -->
+    <script src="../static/assets/js/moment.js"></script>
+    <link href="../static/assets/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="../static/assets/js/jquery-ui.min.js"></script>
+
+    <link href="../static/assets/css/mlf_core.css" rel="stylesheet">
+    <link href="../static/assets/css/mlf_core-dark.css" rel="stylesheet" id="theme-stylesheet">
+    <script src="../static/assets/js/mlf_core.js"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-68098153-2'); </script>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+<div class="mainpage">
+    <div class="mainpage-heading">
+        <div class="container">
+            <h1 class="display-3">Templates</h1>
+            <p class="lead">Browse the <strong>4</strong> templates that are currently available as part of mlf-core.</p></div>
+    </div>
+
+    <div class="triangle triangle-down"></div>
+
+    <div class="container main-content">
+
+        <h1>Available Templates</h1>
+        <p class="mb-3">Can you think of another template that would fit in well?
+            <a href="https://github.com/mlf-core/mlf-core/issues/new?assignees=&labels=&template=new_template.md&title=%5BTEMPLATE%2FCOMMAND%2FCORE%5D+new+template+summary">Let
+                us know!</a></p>
+
+        <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
+            <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
+                <input type="search" class="form-control" placeholder="Search templates" value="">
+            </div>
+            <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
+                <button type="button" class="btn btn-link text-body">Filter:</button>
+            </div>
+            <div class="pipeline-filters btn-group btn-group-sm mr-2 mt-2">
+                <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-mlflow">
+                    MLflow
+                    <span class="badge badge-light d-none d-lg-inline">4</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-pytorch">
+                    Pytorch
+                    <span class="badge badge-light d-none d-lg-inline">1</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-tensorflow">
+                    Tensorflow
+                    <span class="badge badge-light d-none d-lg-inline">1</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-xgboost">
+                    XGBoost
+                    <span class="badge badge-light d-none d-lg-inline">2</span>
+                </button>
+            </div>
+        </div>
+
+        <p class="no-pipelines text-muted mt-5" style="display: none;">No templates found..</p>
+
+        <div class="card-deck pipelines-container">
+            <div class="card card_deck_card pipeline pipeline-mlflow pipeline-pytorch">
+                <div class="card-body clearfix">
+                    <h3 class="card-title mb-0">
+                        <a href="" class="pipeline-name">
+                            <span class="d-none d-lg-inline">mlf-core </span>mlflow-pytorch </a>
+                        <small class="status-icon text-success ml-2 fas fa-check" title="This template is shipped with mlf-core, tested and good to go."
+                               data-toggle="tooltip"></small>
+                    </h3>
+                    <p class="topics mb-0">
+                        <a class="badge pipeline-topic" style="color: #1e6bb8">mlflow</a>
+                        <a class="badge pipeline-topic" style="color: #1e6bb8">pytorch</a>
+                    </p>
+                    <p class="card-text mb-0 mt-2">A fully GPU reproducible MLflow based Pytorch template with CPU, multi-GPU (Dataparallel API),
+                        system-intelligence and Tensorboard support. The initialized project contains a MNIST example.</p>
+                    <p class="mb-0 mt-2 dl-btn-row">
+                        <a href="https://github.com/mlf-core/mlf-core/tree/master/mlf_core/create/templates/mlflow/mlflow_pytorch" target="_blank"
+                           class="btn btn-sm btn-outline-success">
+                            Version <strong>1.0.0</strong>
+                        </a> &nbsp;
+                        <small class="text-black-50 publish-date" data-pubdate="1587720362">Shipped in initial mlf-core release</small>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card card_deck_card pipeline pipeline-mlflow pipeline-tensorflow">
+                <div class="card-body clearfix">
+                    <h3 class="card-title mb-0">
+                        <a href="" class="pipeline-name">
+                            <span class="d-none d-lg-inline">mlf-core </span>mlflow-tensorflow</a>
+                        <small class="status-icon text-success ml-2 fas fa-check" title="This template is shipped with mlf-core, tested and good to go."
+                               data-toggle="tooltip"></small>
+                    </h3>
+                    <p class="topics mb-0">
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">mlflow</a>
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">tensorflow</a>
+                    </p>
+                    <p class="card-text mb-0 mt-2">A fully GPU reproducible MLflow based Tensorflow template with CPU, multi-GPU (Mirrored Strategy API),
+                        system-intelligence and Tensorboard support. The initialized project contains a MNIST example.</p>
+                    <p class="mb-0 mt-2 dl-btn-row">
+                        <a href="https://github.com/mlf-core/mlf-core/tree/master/mlf_core/create/templates/mlflow/mlflow_tensorflow" target="_blank" class="btn btn-sm btn-outline-success">
+                            Version <strong>1.0.0</strong>
+                        </a> &nbsp;
+                        <small class="text-black-50 publish-date" data-pubdate="1587720362">Shipped in initial mlf-core release</small>
+                    </p>
+                </div>
+            </div>
+
+             <div class="card card_deck_card pipeline pipeline-mlflow pipeline-xgboost">
+                <div class="card-body clearfix">
+                    <h3 class="card-title mb-0">
+                        <a href="" class="pipeline-name">
+                            <span class="d-none d-lg-inline">mlf-core </span>mlflow-xgboost</a>
+                        <small class="status-icon text-success ml-2 fas fa-check" title="This template is shipped with mlf-core, tested and good to go."
+                               data-toggle="tooltip"></small>
+                    </h3>
+                    <p class="topics mb-0">
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">mlflow</a>
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">xgboost</a>
+                    </p>
+                    <p class="card-text mb-0 mt-2">A fully GPU reproducible MLflow based XGBoost template with CPU, single-GPU and
+                        system-intelligence support. The initialized project contains a Covertype example.</p>
+                    <p class="mb-0 mt-2 dl-btn-row">
+                        <a href="https://github.com/mlf-core/mlf-core/tree/master/mlf_core/create/templates/mlflow/mlflow_xgboost" target="_blank" class="btn btn-sm btn-outline-success">
+                            Version <strong>1.0.0</strong>
+                        </a> &nbsp;
+                        <small class="text-black-50 publish-date" data-pubdate="1587720362">Shipped in initial mlf-core release</small>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card card_deck_card pipeline pipeline-mlflow pipeline-xgboost">
+                <div class="card-body clearfix">
+                    <h3 class="card-title mb-0">
+                        <a href="" class="pipeline-name">
+                            <span class="d-none d-lg-inline">mlf-core </span>mlflow-xgboost_dask</a>
+                        <small class="status-icon text-success ml-2 fas fa-check" title="This template is shipped with mlf-core, tested and good to go."
+                               data-toggle="tooltip"></small>
+                    </h3>
+                    <p class="topics mb-0">
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">mlflow</a>
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">xgboost</a>
+                        <a style="color: #1e6bb8" class="badge pipeline-topic">dask</a>
+                    </p>
+                    <p class="card-text mb-0 mt-2"> A fully GPU reproducible MLflow based XGBoost template with CPU, single-GPU, multi-GPU and
+                        system-intelligence support. The initialized project contains a Covertype example.</p>
+                    <p class="mb-0 mt-2 dl-btn-row">
+                        <a href="https://github.com/mlf-core/mlf-core/tree/master/mlf_core/create/templates/mlflow/mlflow_xgboost_dask" target="_blank" class="btn btn-sm btn-outline-success">
+                            Version <strong>1.0.0</strong>
+                        </a> &nbsp;
+                        <small class="text-black-50 publish-date" data-pubdate="1587720362">Shipped in initial mlf-core release</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+</body>
+</html>
