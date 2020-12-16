@@ -1,9 +1,9 @@
-cookietemple_version: '0.1.0 # <<COOKIETEMPLE_NO_BUMP>>'
+cookietemple_version: '1.2.3 # <<COOKIETEMPLE_NO_BUMP>>'
 domain: web
 language: python
 project_slug: mlf_core_website
 project_slug_no_hyphen: mlf_core_website
-template_version: '1.0.0 # <<COOKIETEMPLE_NO_BUMP>>'
+template_version: '1.1.0 # <<COOKIETEMPLE_NO_BUMP>>'
 template_handle: web-website-python
 github_username: mlf-core
 creator_github_username: zethson

@@ -1,6 +1,6 @@
 name: Run mlf_core_website Tox Test Suite
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:

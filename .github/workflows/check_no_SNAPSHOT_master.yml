@@ -9,6 +9,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
       # PRs to the repository master branch are only ok if coming from any patch or release branch
       - name: Install cookietemple
         run: pip install cookietemple
@@ -22,7 +26,6 @@ jobs:
             else
                 exit 0
             fi
-
 
       # If the above check failed, post a comment on the PR explaining the failure
       # NOTE - this may not work if the PR is coming from a fork, due to limitations in GitHub actions secrets
@@ -38,4 +41,3 @@ jobs:
             The `master` branch should never have any SNAPSHOT versions, since only fully stable code should be on the `master` branch.
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-repeats: false
-
