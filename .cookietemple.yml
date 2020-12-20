@@ -1,4 +1,4 @@
-cookietemple_version: '1.2.3 # <<COOKIETEMPLE_NO_BUMP>>'
+cookietemple_version: '1.2.4 # <<COOKIETEMPLE_NO_BUMP>>'
 domain: web
 language: python
 project_slug: mlf_core_website
