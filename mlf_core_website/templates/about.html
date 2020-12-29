@@ -9,6 +9,7 @@
 
     <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/assets/css/code_highlighting/github.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous"/>
     <!-- Other JS -->
     <script src="../static/assets/js/jquery-3.4.1.min.js"></script>
     <script src="../static/assets/js/popper.min.js"></script>
@@ -23,146 +24,264 @@
     <script src="../static/assets/js/mlf_core.js"></script>
 
     <style type="text/css">
-        .zoomin img {
-            height: 200px;
-            width: 200px;
-            border-radius: 50%;
-            -webkit-transition: all 2s ease;
-            -moz-transition: all 2s ease;
-            -ms-transition: all 2s ease;
-            transition: all 2s ease;
+
+        #timeline {
+            display: flex;
+            background-color: #031625;
         }
 
-        .zoomin figure figcaption {
-            width: 200px;
-            font-size: small;
-            color: #2d6995;
-            font-family: "Maven Pro", sans-serif;
+        #timeline:hover .tl-item {
+            width: 23.3333%;
+        }
+
+        .tl-item {
+            transform: translate3d(0, 0, 0);
+            position: relative;
+            width: 25%;
+            height: 50vh;
+            min-height: 100px;
+            color: #fff;
+            overflow: hidden;
+            transition: width 0.5s ease;
+        }
+
+        .tl-item:before, .tl-item:after {
+            transform: translate3d(0, 0, 0);
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tl-item:after {
+            background: rgba(3, 22, 37, 0.85);
             opacity: 1;
-            visibility: visible;
-            -webkit-transition: visibility 0s, opacity 0.5s linear;
-            transition: visibility 0s, opacity 0.5s linear;
+            transition: opacity 0.5s ease;
         }
 
-        .zoomin figure:hover img {
-            width: 250px;
-            height: 250px;
+        .tl-item:before {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 75%);
+            z-index: 1;
+            opacity: 0;
+            transform: translate3d(0, 0, 0) translateY(50%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .zoomin figure:hover figcaption {
-            font-size: xx-small;
-            visibility: hidden;
+        .tl-item:hover {
+            width: 30% !important;
+        }
+
+        .tl-item:hover:after {
             opacity: 0;
         }
 
-        @media screen and (max-width: 540px) {
-            .zoomin img:hover {
-                width: 220px;
-                height: 220px;
-            }
+        .tl-item:hover:before {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) translateY(0);
+            transition: opacity 1s ease, transform 1s ease 0.25s;
         }
 
-        @media screen and (max-width: 510px) {
-            .zoomin img {
-                width: 180px;
-                height: 180px;
-            }
-
-            .zoomin img:hover {
-                width: 210px;
-                height: 210px;
-            }
+        .tl-item:hover .tl-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.75s ease 0.5s;
         }
 
-        @media screen and (max-width: 490px) {
-            .zoomin {
-                display: flex;
-                margin-left: 50%;
-                margin-right: -80%;
-            }
-
-            .zoomin img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .zoomin img:hover {
-                width: 220px;
-                height: 220px;
-            }
+        .tl-item:hover .tl-bg {
+            filter: grayscale(0);
         }
 
-        @media screen and (max-width: 440px) {
-            .zoomin {
-                margin-left: 40%;
-                margin-right: -80%;
-            }
+        .tl-item:hover .tl-year {
+            opacity: 0;
+            transition: all 0.25s ease 0.25s;
         }
 
-        @media screen and (max-width: 400px) {
-            .zoomin {
-                margin-left: 40%;
-                margin-right: -80%;
-            }
-
-            .zoomin img {
-                width: 180px;
-                height: 180px;
-            }
-
-            .zoomin img:hover {
-                width: 200px;
-                height: 200px;
-            }
+        .tl-content {
+            transform: translate3d(0, 0, 0) translateY(25px);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin: 0 1.618em;
+            top: 50%;
+            opacity: 0;
         }
 
-        @media screen and (max-width: 360px) {
-            .zoomin {
-                margin-left: 30%;
-                margin-right: -80%;
-            }
+        .tl-content h1 {
+            font-family: "Righteous", Helvetica Neue, Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            color: #1779cf;
+            font-size: 1.44rem;
+            font-weight: normal;
         }
 
-        @media screen and (max-width: 330px) {
-            .zoomin {
-                margin-left: 20%;
-                margin-right: -80%;
-            }
-        }
-
-        .zoomin p {
+        .tl-year {
             position: absolute;
             top: 50%;
             left: 50%;
-            color: white;
-            margin-bottom: 5px;
-            font-family: sans-serif;
-            opacity: 1;
-            visibility: visible;
-            -webkit-transition: visibility 0s, opacity 0.5s linear;
-            transition: visibility 0s, opacity 0.5s linear;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 1;
+            border-bottom: 1px solid #fff;
         }
 
-        .zoomin:hover p {
+        .tl-year p {
+            font-family: "Righteous", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 1.728rem;
+            line-height: 0;
+        }
+
+        .tl-bg {
+            transform: translate3d(0, 0, 0);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center center;
+            transition: filter 0.5s ease;
+            filter: grayscale(100%);
+        }
+    </style>
+    <style type="text/css">
+
+        .käse {
+            height: 500px;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .käse::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transition: background 250ms cubic-bezier(0.32, -0.24, 0.24, 0.98);
+            z-index: 2;
+        }
+
+        .käse:hover ~ .default {
+            opacity: 0;
             visibility: hidden;
         }
 
 
-        .wrap_img:hover img {
-            -webkit-filter: blur(13px);
-            -moz-filter: blur(13px);
-            -o-filter: blur(13px);
-            -ms-filter: blur(13px);
-            filter: blur(13px);
-
+        .käse:hover article {
+            opacity: 1;
         }
 
-        .wrap_img:hover img:hover {
-            -webkit-filter: blur(0px);
-            -moz-filter: blur(0px);
-            -o-filter: blur(0px);
-            -ms-filter: blur(0px);
-            filter: blur(0px);
+        .käse:hover::after {
+            transition-timing-function: cubic-bezier(1, 1.6, 0.3, 1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .käse + .käse::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .käse:nth-of-type(1) .kuchen {
+            background-color: #bf4040;
+        }
+
+        .käse:nth-of-type(2) .kuchen {
+            background-color: #80bf40;
+        }
+
+        .käse:nth-of-type(3) .kuchen {
+            background-color: #40bfbf;
+        }
+
+        .käse:nth-of-type(4) .kuchen {
+            background-color: #8040bf;
+        }
+
+        .käse .kuchen {
+
+            height: 500px;
+            transition: opacity 250ms linear;
+            background-blend-mode: multiply;
+        }
+
+        .käse article {
+            opacity: 0;
+            width: 95%;
+            max-width: 600px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0px 1px 0px 2px rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            transform: translateX(-50%) translateY(0%);
+            transition: transform 500ms cubic-bezier(0.32, -0.24, 0.24, 0.98);
+        }
+
+        .käse h1 {
+            margin-top: 1rem;
+        }
+
+        .barb {
+            font-size: x-large;
+            font-family: "Righteous", Helvetica Neue, Helvetica, Arial, sans-serif;
+            text-align: center;
+        }
+
+        .käse:hover > .kuchen {
+            opacity: 1;
+        }
+
+        .käse:hover .barb {
+            opacity: 0;
+        }
+
+        .käse:hover > .kuchen article {
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .käse > .kuchen,
+        .kuchen.bg {
+            background-image: url(//s3-us-west-2.amazonaws.com/s.cdpn.io/111863/image_dark_matter_example_1.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .kuchen.default {
+            position: fixed;
+            width: 100%;
+            top: 50%;
+            transition: opacity 250ms;
+        }
+
+        .kuchen.bg {
+            position: fixed;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background-blend-mode: multiply;
+            background-color: #2A2B26;
+            z-index: -1;
+        }
+
+
+        .salat {
+            font-weight: 100;
+            width: 100%;
+            text-align: center;
+            margin-top: 0;
         }
 
 
@@ -193,39 +312,116 @@
     <div class="triangle triangle-down"></div>
 
     <div class="container main-content">
-        <h2 id="core">Core team</h2>
-        <p>The core team members who administer the mlf-core project are listed below:</p>
-        <div class="col-md-9">
-            <div class="wrap_img">
-                <div class="row">
-                    <div class="outer">
-                        <div class="inner">
-                            <div class="col-md-1">
-                                <div class="zoomin">
-                                    <figure>
-                                        <a href="https://github.com/Zethson">
-                                            <img src="../static/assets/img/about_core_team/lukas.jpeg" alt='missing'/>
-                                            <figcaption><a style="visibility: hidden">move</a>Lukas "Zeth" Heumos</figcaption>
-                                        </a>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="container">
-            <p>We regularly review members - if you'd like to be involved, join our
-                <a href="https://discord.com/channels/708008788505919599/708008788505919602">Discord</a> server.</p>
-            <p>All mlf-core community members are expected to adhere to our <a href="/code_of_conduct">code of conduct</a>.</p>
-            <h2 id="history"><a href="#history" class="header-link"><span class="fas fa-link"></span></a>History</h2>
-            <p>mlf-core was initially developed by Lukas Heumos (<a href="https://github.com/Zethson">GitHub</a>/<a href="https://twitter.com/LukasHeumos">Twitter</a>).</p>
-            <p>We noticed a strong demand and even requirement for fully deterministic machine learning.</p>
-            <p>To encourage users to adhere to machine learning best practices we developed mlf-core as a tool to tackle this problem.
-                The initial release has been in August 2020 and we're planning to consistently develop mlf-core further together with the open-source community.</p>
-        </div>
+        <!-- Team member section -->
+        <h1>The Core Team</h1>
+        <section id="timeline">
+
+            <div class="tl-item">
+
+                <div class="tl-bg" style="background-image: url(https://placeimg.com/801/801/nature)"></div>
+
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">Lukas</p>
+                </div>
+
+                <div class="tl-content">
+                    <h1 class="f3 text--accent ttu">Lukas Heumos</h1>
+                    <p>Some short text here.</p>
+                </div>
+
+            </div>
+
+            <div class="tl-item">
+
+                <div class="tl-bg" style="background-image: url(https://placeimg.com/802/802/nature)"></div>
+
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">Philipp</p>
+                </div>
+
+                <div class="tl-content">
+                    <h1 class="f3 text--accent ttu">Philipp Ehmele</h1>
+                    <p>Some short text here.</p>
+                </div>
+
+            </div>
+
+            <div class="tl-item">
+
+                <div class="tl-bg" style="background-image: url(https://placeimg.com/803/803/nature)"></div>
+
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">Some</p>
+                </div>
+
+                <div class="tl-content">
+                    <h1 class="f3 text--accent ttu">Lukas Heumos</h1>
+                    <p>Some short text here.</p>
+                </div>
+
+            </div>
+
+            <div class="tl-item">
+
+                <div class="tl-bg" style="background-image: url(https://placeimg.com/800/800/nature)"></div>
+
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">Some</p>
+                </div>
+
+                <div class="tl-content">
+                    <h1 class="f3 text--accent ttu">Lukas Heumos</h1>
+                    <p>Some short text here.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Dev history timeline section -->
+        <h1>Development history of mlf-core</h1>
+        <section class="käse" id=s1>
+            <div class="kuchen">
+                <p style="visibility: hidden">test</p>
+                <p style="visibility: hidden">test</p>
+                <p style="visibility: hidden">test</p>
+                <p style="visibility: hidden">test</p>
+                <p class="barb">Hallo</p>
+                <article>
+                    <h1 class="salat">Some header</h1>
+                    <p>Some text here.</p>
+                </article>
+            </div>
+        </section>
+        <section class="käse" id=s2>
+            <div class="kuchen">
+                <p class="barb">Hallo</p>
+                <article>
+                    <h1 class="salat">Some header</h1>
+                    <p>Some text here.</p>
+                </article>
+            </div>
+        </section>
+        <section class="käse" id=s3>
+            <div class="kuchen">
+                <p class="barb">Hallo</p>
+                <article>
+                    <h1 class="salat">Some header</h1>
+                    <p>Some text here.</p>
+                </article>
+            </div>
+        </section>
+        <section class="käse" id=s4>
+            <div class="kuchen">
+                <p class="barb">Hallo</p>
+                <article>
+                    <h1 class="salat">Some header</h1>
+                    <p>Some text here.</p>
+                </article>
+            </div>
+        </section>
+
+
     </div>
 
     {% include 'footer.html' %}
