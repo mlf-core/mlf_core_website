@@ -110,7 +110,129 @@ HEADER BANNER STYLE BEGIN
             HEADER BANNER STYLE END
             ==========================
             */
+        .gradient-text {
+            background-color: red;
+            background-image: linear-gradient(45deg, red, #2d6995);
+            background-size: 100%;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+        }
     </style>
+
+    <style>
+        .carousel {
+            perspective: 1200px;
+            padding-top: 10%;
+            font-size: 0;
+            margin-bottom: 3rem;
+        }
+
+        .spinner {
+            transform-style: preserve-3d;
+            height: 300px;
+            transform-origin: 50% 50% -500px;
+            transition: 1s;
+        }
+
+        .spinner img {
+            width: 40%;
+            max-width: 425px;
+            height: 110%;
+            position: absolute;
+            left: 30%;
+            transform-origin: 50% 50% -500px;
+            outline: 1px solid transparent;
+        }
+
+        .spinner > img:hover {
+            /*  ======================
+          Style here for smooth transition zoom when hovered
+          ==========================
+          */
+        }
+
+        .spinner img:nth-child(1) {
+            transform: rotateY(45deg);
+        }
+
+        .spinner img:nth-child(2) {
+            transform: rotateY(0deg);
+        }
+
+        .spinner img:nth-child(3) {
+            transform: rotateY(-45deg);
+        }
+
+        .spinner img:nth-child(4) {
+            transform: rotateY(-90deg);
+        }
+
+
+        .carousel > span {
+            color: #fff;
+            margin: 5%;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 2rem;
+            transition: 0.6s color;
+            position: relative;
+            margin-top: -6rem;
+            border-bottom: none;
+            line-height: 0;
+        }
+
+        .carousel > span:hover {
+            color: #888;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        var angle = 0;
+
+        function galleryspin(sign) {
+            spinner = document.querySelector("#spinner");
+
+            if (!sign) {
+                angle = angle + 45;
+                if (angle === 135) {
+                    angle = -45
+                }
+            } else {
+                angle = angle - 45;
+                if (angle === -90) {
+                    angle = 90
+                }
+            }
+            spinner.setAttribute("style", "-webkit-transform: rotateY(" + angle + "deg); -moz-transform: rotateY(" + angle + "deg); transform: rotateY(" + angle + "deg);");
+        }
+    </script>
+    <script>
+        $(function () {
+            $("#myImg").hover(
+                    function () {
+                        $(this).attr("src", "PATH/TO/GIF");
+                    },
+                    function () {
+                        $(this).attr("src", "../static/assets/img/about_core_team/lukas.jpeg");
+                    }
+            );
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#myOtherImg").hover(
+                    function () {
+                        $(this).attr("src", ".PATH/TO/GIF");
+                    },
+                    function () {
+                        $(this).attr("src", "./static/assets/img/about_core_team/philipp.jpg");
+                    }
+            );
+        });
+    </script>
 </head>
 
 <body>
@@ -122,14 +244,15 @@ HEADER BANNER STYLE BEGIN
     <div class="header">
         <img src="../static/assets/img/logo/mlf_core_transparent_cropped.png">
         <div class="h1div">
-            <p style="font-family: 'Righteous', cursive; font-size: xx-large;">Deterministic machine learning project templates based on <a
-                    href="https://mlflow.org/">MLflow</a>.</p>
+            <p class="gradient-text" style="font-family: 'Righteous', cursive; font-size: xx-large; color: red">Deterministic machine learning project templates
+                based on <a
+                        href="https://mlflow.org/">MLflow</a>.</p>
         </div>
     </div>
 </div>
 
 <div class="container py-5 text-center lead" id="features" style="font-family: 'Maven Pro', sans-serif">
-    <p>mlf-core is an open-source effort to facilitate deterministic machine learning and enable best practices.</p>
+    <h1>mlf-core: an open-source effort to facilitate deterministic best practice machine learning</h1>
 </div>
 
 <div class="homepage-intro" style="border-radius: 40%">
@@ -242,33 +365,19 @@ HEADER BANNER STYLE BEGIN
 
 <div class="bg-dark py-5">
     <div class="container">
+        <h1>Get started in minutes</h1>
+        <div class="carousel" id="carousel">
+            <figure class="spinner" id="spinner">
+                <!-- TestImages ONYL! -->
+                <img id="myOtherImg" src="../static/assets/img/about_core_team/philipp.jpg">
+                <img id="myImg" src="../static/assets/img/about_core_team/lukas.jpeg" alt>
+                <img src="../static/assets/img/about_core_team/lukas.jpeg" alt>
+                <img src="../static/assets/img/about_core_team/lukas.jpeg" alt>
+            </figure>
+        </div>
+        <span style="float:left" class="ss-icon" onclick="galleryspin('-')">&lt;</span>
+        <span style="float:right" class="ss-icon" onclick="galleryspin('')">&gt;</span>
         <div class="row">
-            <div class="col-sm-6">
-                <h2 id="get-started">Get started in minutes</h2>
-                <p class="text-white">mlf-core currently offers support for Linux and MacOS.</p>
-                <p class="text-white">It comes with a bunch of useful commands to make your life during development easier.</p>
-                <p class="text-white">Make sure to check out the <a href="https://mlf-core.readthedocs.io" style="color: #005fff">documentation</a> for details.
-                </p>
-            </div>
-            <div class="col-sm-6">
-                <div class="card text-white bg-dark border-light">
-                    <div class="card-body">
-                <pre class="text-white mb-0">
-<span class="text-white-50"># Install mlf-core</span>
-pip install mlf-core
-
-<span class="text-white-50"># Get an overview of all commands</span>
-mlf-core --help
-
-<span class="text-white-50"># Check out all available templates</span>
-mlf-core list
-
-<span class="text-white-50"># Get started and create your first project</span>
-mlf-core create
-                </pre>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
