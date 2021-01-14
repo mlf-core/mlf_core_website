@@ -57,7 +57,8 @@ HEADER BANNER STYLE BEGIN
         .header:after {
             content: "";
             width: 100%;
-            height: 100%;
+            height: 120%;
+            overflow-y: hidden;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -68,7 +69,8 @@ HEADER BANNER STYLE BEGIN
         .header:before {
             content: "";
             width: 100%;
-            height: 100%;
+            height: 120%;
+            overflow-y: hidden;
             position: absolute;
             top: 0;
             left: 0;
@@ -83,17 +85,38 @@ HEADER BANNER STYLE BEGIN
         }
 
         .header img {
-            margin-top: 8%;
-            margin-left: -5%;
-            margin-right: -23%;
+            margin-top: 11%;
+            margin-left: -13%;
+            margin-right: -15%;
             height: 50%;
         }
 
-        .h1div {
-            margin-left: -30%;
-            margin-right: -26%;
-            padding-top: 30%;
-            color: #2d6995;
+        @media only screen and (max-width: 960px) {
+            .header img {
+                margin-top: 15%;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .header img {
+                margin-top: 17%;
+                height: 40%;
+                width: 50%;
+            }
+
+            .header {
+                height: 200%;
+            }
+        }
+
+        @media only screen and (max-width: 430px) {
+            .header img {
+                margin-top: 20%;
+            }
+
+            .header {
+                height: 400%;
+            }
         }
 
 
@@ -119,6 +142,13 @@ HEADER BANNER STYLE BEGIN
             -webkit-text-fill-color: transparent;
             -moz-text-fill-color: transparent;
         }
+
+        @media only screen and (max-width: 600px) {
+            .homepage-intro .container .row .col-md-4 p {
+                font-size: small;
+            }
+        }
+
     </style>
     <script>
         function go(loc) {
@@ -135,19 +165,16 @@ HEADER BANNER STYLE BEGIN
 <div class="homepage-header">
     <div class="header">
         <img src="../static/assets/img/logo/mlf_core_transparent_cropped.png">
-        <div class="h1div">
-            <p class="gradient-text" style="font-family: 'Righteous', cursive; font-size: xx-large; color: red">Deterministic machine learning project templates
-                based on <a
-                        href="https://mlflow.org/">MLflow</a>.</p>
-        </div>
     </div>
 </div>
 
 <div class="container py-5 text-center lead" id="features" style="font-family: 'Maven Pro', sans-serif">
-    <h1>mlf-core: an open-source effort to facilitate deterministic best practice machine learning</h1>
+    <p class="gradient-text" style="font-family: 'Righteous', cursive; font-size: xx-large; color: red">Deterministic machine learning project templates
+        based on <a
+                href="https://mlflow.org/">MLflow</a>.</p>
 </div>
 
-<div class="homepage-intro" style="border-radius: 40%">
+<div class="homepage-intro" style="border-radius: 30%">
 
     <div class="container">
         <div class="row">
@@ -244,18 +271,19 @@ HEADER BANNER STYLE BEGIN
             <div class="col-md-6">
                 <ul class="list-switch left video-chooser">
                     <li><a data-src="" class="active"><span
-                            class="hidden-lg hidden-md label label-default" onclick="go('../static/assets/img/index_gifs/config_ML.gif')"></span>Config mlf-core</a></li>
+                            class="hidden-lg hidden-md label label-default" onclick="go('../static/assets/img/index_gifs/config_ML.gif')"></span>Config mlf-core</a>
+                    </li>
                 </ul>
                 <ul class="list-switch left video-chooser">
-                    <li><a  class="active" onclick="go('../static/assets/img/index_gifs/lint_ML.gif')"><span
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/lint_ML.gif')"><span
                             class="hidden-lg hidden-md label label-default"></span>Lint your project</a></li>
                 </ul>
                 <ul class="list-switch left video-chooser">
-                    <li><a  class="active" onclick="go('../static/assets/img/index_gifs/bump_ML.gif')"><span
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/bump_ML.gif')"><span
                             class="hidden-lg hidden-md label label-default"></span>Bump your projects version</a></li>
                 </ul>
                 <ul class="list-switch left video-chooser">
-                    <li><a  class="active" onclick="go('../static/assets/img/index_gifs/sync_ML.gif')"><span
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/sync_ML.gif')"><span
                             class="hidden-lg hidden-md label label-default"></span>Keep your projects synced</a></li>
                 </ul>
             </div>
@@ -273,7 +301,7 @@ HEADER BANNER STYLE BEGIN
                 <p class="text-white">Make sure to check out the <a href="https://mlf-core.readthedocs.io" style="color: #005fff">documentation</a> for details.
                 </p>
                 <a href="https://mlf-core.readthedocs.io">
-                <img src="../static/assets/img/icons/clipboardDoc_icon.svg" style="height: 70%; width: 40%; margin-left: 25%; margin-bottom: 20%"/>
+                    <img src="../static/assets/img/icons/clipboardDoc_icon.svg" style="height: 70%; width: 40%; margin-left: 25%; margin-bottom: 20%"/>
                 </a>
             </div>
             <div class="col-sm-6">
