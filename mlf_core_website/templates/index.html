@@ -9,6 +9,7 @@
 
     <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/assets/css/code_highlighting/github.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous"/>
 
     <!-- Other JS -->
     <script src="../static/assets/js/jquery-3.4.1.min.js"></script>
@@ -23,6 +24,7 @@
     <link href="../static/assets/css/mlf_core.css" rel="stylesheet">
     <link href="../static/assets/css/mlf_core-dark.css" rel="stylesheet" id="theme-stylesheet">
     <script src="../static/assets/js/mlf_core.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>window.dataLayer = window.dataLayer || [];
 
     function gtag() {
@@ -31,6 +33,129 @@
 
     gtag('js', new Date());
     gtag('config', 'UA-68098153-2'); </script>
+
+    <style type="text/css">
+        /*
+======================
+HEADER BANNER STYLE BEGIN
+==========================
+*/
+
+        .header {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            height: 70vh;
+            min-width: 300px;
+            color: #eee;
+        }
+
+        .header:after {
+            content: "";
+            width: 100%;
+            height: 120%;
+            overflow-y: hidden;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 40%, rgba(27, 32, 48, 1) 100%);
+        }
+
+        .header:before {
+            content: "";
+            width: 100%;
+            height: 120%;
+            overflow-y: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform: translateZ(0) scale(1.0, 1.0);
+            transform: translateZ(0);
+            background: #1B2030 url('../static/assets/img/background_header/red_blue.png') center no-repeat;
+            background-size: 100%, 100%;
+            animation: grow 30s linear 10ms infinite;
+            transition: all 0.2s ease-in-out;
+            z-index: -2
+        }
+
+        .header img {
+            margin-top: 2%;
+            margin-left: -13%;
+            margin-right: -15%;
+            height: 110%;
+            width: 40%;
+        }
+
+        @media only screen and (max-width: 960px) {
+            .header img {
+                margin-top: 3%;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .header img {
+                margin-top: 17%;
+                height: 40%;
+                width: 50%;
+            }
+
+            .header {
+                height: 200%;
+            }
+        }
+
+        @media only screen and (max-width: 430px) {
+            .header img {
+                margin-top: 20%;
+            }
+
+            .header {
+                height: 400%;
+            }
+        }
+
+
+        @keyframes grow {
+            0% {
+                transform: scale(1)
+            }
+            50% {
+                transform: scale(1.2)
+            }
+        }
+
+        /*  ======================
+            HEADER BANNER STYLE END
+            ==========================
+            */
+        .gradient-text {
+            background-color: red;
+            background-image: linear-gradient(45deg, red, #2d6995);
+            background-size: 100%;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .homepage-intro .container .row .col-md-4 p {
+                font-size: small;
+            }
+        }
+
+    </style>
+    <script>
+        function go(loc) {
+            document.getElementById('mlf_core_gifs').src = loc
+        }
+    </script>
 </head>
 
 <body>
@@ -39,47 +164,42 @@
 
 
 <div class="homepage-header">
-    <div class="homepage-header-contents col-md-5">
-        <img>
-            <img src="../static/assets/img/logo/mlf_core_transparent_cropped.png">
-        </h1>
-        <p class="lead" style="font-family: 'Maven Pro', sans-serif; color: #af0308; font-weight: bold">
-            Deterministic machine learning project templates based on <a href="https://mlflow.org/">MLflow</a>.</p>
-        <div class="hompage-cta-flex">
-            <a class="hompage-cta" href="/templates">View Templates</a>
-        </div>
+    <div class="header">
+        <img src="../static/assets/img/logo/mlf_core_transparent_cropped.svg">
     </div>
 </div>
 
+<div class="container py-5 text-center lead" id="features" style="font-family: 'Maven Pro', sans-serif">
+    <p class="gradient-text" style="font-family: 'Righteous', cursive; font-size: xx-large; color: red">Deterministic machine learning project templates
+        based on <a
+                href="https://mlflow.org/">MLflow</a>.</p>
+</div>
 
-<div class="triangle triangle-up"></div>
-<div class="homepage-intro">
+<div class="homepage-intro" style="border-radius: 30%">
+
     <div class="container">
         <div class="row">
             <div class="col-md-4 py-3 py-md-5 px-md-4">
+                <i class="fa fa-users" aria-hidden="true" style="font-size: 200%"></i>
                 <h3 class="display-5 text-white">For users</h3>
                 <p class="lead">Highly customizable, ready-to-use templates for project setup in seconds.</p>
             </div>
             <div class="col-md-4 py-3 py-md-5 px-md-4">
+                <i class="fa fa-desktop" aria-hidden="true" style="font-size: 200%"></i>
                 <h3 class="display-5 text-white">For developers</h3>
-                <p class="lead">A community to build standardized, well-designed templates to accelerate your workflow.</p>
+                <p class="lead">A community to build standardized and deterministic machine learning models.</p>
             </div>
             <div class="col-md-4 py-3 py-md-5 px-md-4">
+                <i class="fa fa-building" aria-hidden="true" style="font-size: 200%"></i>
                 <h3 class="display-5 text-white">For companies</h3>
                 <p class="lead">Standardize your workflow, group experiments, track parameters and metrics and benefit from fully reproducible results.</p>
             </div>
         </div>
-        <p class="text-center text-white m-0 pb-3">
-
-        </p>
+        <p class="text-center text-white m-0 pb-3"></p>
     </div>
 </div>
-<div class="triangle triangle-down"></div>
-
-<div class="container py-5 text-center lead" id="features" style="font-family: 'Maven Pro', sans-serif">
-    <p>mlf-core is an open-source effort to facilitate deterministic machine learning and enable best practices.</p>
-</div>
-
+<p style="visibility: hidden">Hey</p>
+<p style="visibility: hidden">Hey</p>
 <div id="features" class="container homepage-feature-boxes">
     <div class="row">
         <div class="col-md-4 mb-5">
@@ -87,7 +207,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Frameworks</h5>
                     <img class="float-right ml-3" height="100px" src="../static/assets/img/icons/books_icon.svg"/>
-                    <p class="card-text">mlf-core provides deterministic, standardized templates for several machine learning frameworks.</p>
+                    <p class="card-text">mlf-core provides deterministic and standardized templates for several machine learning frameworks.</p>
                 </div>
             </div>
         </div>
@@ -140,25 +260,43 @@
     </div>
 </div>
 
-   <div class="bg-secondary py-5">
-      <div class="container">
+<div class="bg-secondary py-5">
+    <div class="container">
 
         <div class="row videos-row">
-          <div class="col-md-6">
-            <div class="embed-responsive embed-responsive-16by9 hidden-xs hidden-sm">
-              <iframe id="mlf-core-video" class="embed-responsive-item" src="https://www.youtube.com/embed/Atng0QKksTs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="col-md-6">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img id="mlf_core_gifs" class="embed-responsive-item" src="../static/assets/img/index_gifs/config_ML.gif">
+                </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-switch left video-chooser">
-              <li><a href="https://www.youtube.com/embed/Atng0QKksTs" data-src="https://www.youtube.com/embed/Atng0QKksTs" class="active"><span class="hidden-lg hidden-md label label-default">Video:</span> Introduction to mlf-core <em>(1:34)</em></a></li>
-            </ul>
-{#            <p class="mt-3 ml-md-4 text-white-50 small"><em>More videos coming soon..</em></p>#}
-          </div>
+            <div class="col-md-6">
+                <ul class="list-switch left video-chooser">
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/config_ML.gif')"><span
+                            class="hidden-lg hidden-md label label-default"></span>Configure mlf-core</a>
+                    </li>
+                </ul>
+                <ul class="list-switch left video-chooser">
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/create_ML.gif')"><span
+                            class="hidden-lg hidden-md label label-default"></span>Create your deterministic machine learning project</a>
+                    </li>
+                </ul>
+                <ul class="list-switch left video-chooser">
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/lint_ML.gif')"><span
+                            class="hidden-lg hidden-md label label-default"></span>Verify your project's standards including full determinism</a></li>
+                </ul>
+                <ul class="list-switch left video-chooser">
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/bump_ML.gif')"><span
+                            class="hidden-lg hidden-md label label-default"></span>Bump your project's version</a></li>
+                </ul>
+                <ul class="list-switch left video-chooser">
+                    <li><a class="active" onclick="go('../static/assets/img/index_gifs/sync_ML.gif')"><span
+                            class="hidden-lg hidden-md label label-default"></span>Ensure that your project is up to date</a></li>
+                </ul>
+            </div>
         </div>
 
-      </div>
     </div>
+</div>
 <!-- SHOULD WE REPLACE ONE WITH LINTING?-->
 
 <div class="bg-dark py-5">
@@ -166,9 +304,11 @@
         <div class="row">
             <div class="col-sm-6">
                 <h2 id="get-started">Get started in minutes</h2>
-                <p class="text-white">mlf-core currently offers support for Linux and MacOS.</p>
-                <p class="text-white">It comes with a bunch of useful commands to make your life during development easier.</p>
-                <p class="text-white">Make sure to check out the <a href="https://mlf-core.readthedocs.io" style="color: #005fff">documentation</a> for details.</p>
+                <p class="text-white">Make sure to check out the <a href="https://mlf-core.readthedocs.io" style="color: #005fff">documentation</a> for details.
+                </p>
+                <a href="https://mlf-core.readthedocs.io">
+                    <img src="../static/assets/img/icons/clipboardDoc_icon.svg" style="height: 70%; width: 40%; margin-left: 25%; margin-bottom: 20%"/>
+                </a>
             </div>
             <div class="col-sm-6">
                 <div class="card text-white bg-dark border-light">

@@ -31,3 +31,8 @@ def about():
 @bp.route('/code_of_conduct')
 def code_of_conduct():
     return render_template('code_of_conduct.html')
+
+
+@bp.route('/projects')
+def projects():
+    return render_template('projects.html')

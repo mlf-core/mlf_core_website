@@ -9,6 +9,7 @@
 
     <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/assets/css/code_highlighting/github.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous"/>
     <!-- Other JS -->
     <script src="../static/assets/js/jquery-3.4.1.min.js"></script>
     <script src="../static/assets/js/popper.min.js"></script>
@@ -23,149 +24,335 @@
     <script src="../static/assets/js/mlf_core.js"></script>
 
     <style type="text/css">
-        .zoomin img {
-            height: 200px;
-            width: 200px;
-            border-radius: 50%;
-            -webkit-transition: all 2s ease;
-            -moz-transition: all 2s ease;
-            -ms-transition: all 2s ease;
-            transition: all 2s ease;
+
+        #timeline {
+            display: flex;
+            width: 50%;
         }
 
-        .zoomin figure figcaption {
-            width: 200px;
-            font-size: small;
-            color: #2d6995;
-            font-family: "Maven Pro", sans-serif;
+        #timeline:hover .tl-item {
+            width: 48%;
+        }
+
+        .tl-item {
+            transform: translate3d(0, 0, 0);
+            position: relative;
+            width: 50%;
+            height: 50vh;
+            min-height: 100px;
+            color: #fff;
+            overflow: hidden;
+            transition: width 0.5s ease;
+        }
+
+        .tl-item:before, .tl-item:after {
+            transform: translate3d(0, 0, 0);
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tl-item:after {
+            background: rgba(3, 22, 37, 0.85);
             opacity: 1;
-            visibility: visible;
-            -webkit-transition: visibility 0s, opacity 0.5s linear;
-            transition: visibility 0s, opacity 0.5s linear;
+            transition: opacity 0.5s ease;
         }
 
-        .zoomin figure:hover img {
-            width: 250px;
-            height: 250px;
+        .tl-item:before {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, black 75%);
+            z-index: 1;
+            opacity: 0;
+            transform: translate3d(0, 0, 0) translateY(50%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .zoomin figure:hover figcaption {
-            font-size: xx-small;
-            visibility: hidden;
+        .tl-item:hover {
+            width: 60% !important;
+        }
+
+        .tl-item:hover:after {
             opacity: 0;
         }
 
-        @media screen and (max-width: 540px) {
-            .zoomin img:hover {
-                width: 220px;
-                height: 220px;
-            }
+        .tl-item:hover:before {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) translateY(0);
+            transition: opacity 1s ease, transform 1s ease 0.25s;
         }
 
-        @media screen and (max-width: 510px) {
-            .zoomin img {
-                width: 180px;
-                height: 180px;
-            }
-
-            .zoomin img:hover {
-                width: 210px;
-                height: 210px;
-            }
+        .tl-item:hover .tl-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.75s ease 0.5s;
         }
 
-        @media screen and (max-width: 490px) {
-            .zoomin {
-                display: flex;
-                margin-left: 50%;
-                margin-right: -80%;
-            }
-
-            .zoomin img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .zoomin img:hover {
-                width: 220px;
-                height: 220px;
-            }
+        .tl-item:hover .tl-bg {
+            filter: grayscale(0);
         }
 
-        @media screen and (max-width: 440px) {
-            .zoomin {
-                margin-left: 40%;
-                margin-right: -80%;
-            }
+        .tl-item:hover .tl-year {
+            opacity: 0;
+            transition: all 0.25s ease 0.25s;
         }
 
-        @media screen and (max-width: 400px) {
-            .zoomin {
-                margin-left: 40%;
-                margin-right: -80%;
-            }
-
-            .zoomin img {
-                width: 180px;
-                height: 180px;
-            }
-
-            .zoomin img:hover {
-                width: 200px;
-                height: 200px;
-            }
+        .tl-content {
+            transform: translate3d(0, 0, 0) translateY(25px);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin: 0 1.618em;
+            top: 50%;
+            opacity: 0;
         }
 
-        @media screen and (max-width: 360px) {
-            .zoomin {
-                margin-left: 30%;
-                margin-right: -80%;
-            }
+        .tl-content h1 {
+            font-family: "Righteous", Helvetica Neue, Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            color: #1779cf;
+            font-size: 1.44rem;
+            font-weight: normal;
         }
 
-        @media screen and (max-width: 330px) {
-            .zoomin {
-                margin-left: 20%;
-                margin-right: -80%;
-            }
+        .tl-content p {
+            font-family: "Righteous", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-weight: normal;
         }
 
-        .zoomin p {
+        .tl-year {
             position: absolute;
             top: 50%;
             left: 50%;
-            color: white;
-            margin-bottom: 5px;
-            font-family: sans-serif;
-            opacity: 1;
-            visibility: visible;
-            -webkit-transition: visibility 0s, opacity 0.5s linear;
-            transition: visibility 0s, opacity 0.5s linear;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 1;
+            border-bottom: 1px solid #fff;
         }
 
-        .zoomin:hover p {
-            visibility: hidden;
+        .tl-year p {
+            font-family: "Righteous", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 1.728rem;
+            line-height: 0;
         }
 
-
-        .wrap_img:hover img {
-            -webkit-filter: blur(13px);
-            -moz-filter: blur(13px);
-            -o-filter: blur(13px);
-            -ms-filter: blur(13px);
-            filter: blur(13px);
-
+        @media only screen and (max-width: 990px){
+            .tl-year p{
+                font-size: 1.5rem;
+            }
+            .tl-content h1 {
+                font-size: 1.1rem;
+            }
+            .tl-content p {
+                font-size: 0.9rem;
+            }
         }
 
-        .wrap_img:hover img:hover {
-            -webkit-filter: blur(0px);
-            -moz-filter: blur(0px);
-            -o-filter: blur(0px);
-            -ms-filter: blur(0px);
-            filter: blur(0px);
+        @media only screen and (max-width: 770px){
+            .tl-content h1 {
+                font-size: 1rem;
+            }
+            .tl-content p {
+                font-size: 0.8rem;
+            }
         }
 
+        @media only screen and (max-width: 520px){
+            .tl-content h1 {
+                font-size: 0.9rem;
+            }
+            .tl-content p {
+                font-size: 0.7rem;
+            }
+        }
 
+        @media only screen and (max-width: 480px){
+            .tl-content h1 {
+                font-size: 0.8rem;
+            }
+            .tl-content p {
+                font-size: 0.6rem;
+            }
+        }
+
+        .tl-bg {
+            transform: translate3d(0, 0, 0);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center center;
+            transition: filter 0.5s ease;
+            filter: grayscale(100%);
+        }
+    </style>
+    <style type="text/css">
+        /*
+======================
+HEADER BANNER STYLE BEGIN
+==========================
+*/
+
+        .header {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            height: 50vh;
+            max-height: 350px;
+            min-width: 300px;
+            color: #eee;
+        }
+
+        .header:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 40%, rgba(27, 32, 48, 1) 100%);
+        }
+
+        .header:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform: translateZ(0) scale(1.0, 1.0);
+            transform: translateZ(0);
+            background: #1B2030 url('../static/assets/img/background_header/red_blue.png') center no-repeat;
+            background-size: 100%, 100%;
+            animation: grow 30s linear 10ms infinite;
+            transition: all 0.2s ease-in-out;
+            z-index: -2
+        }
+
+        .header a {
+            color: #eee
+        }
+
+        .info {
+            width: 100%;
+            padding: 15% 10% 0 10%;
+            text-align: center;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2)
+        }
+
+        .info h1 {
+            font-size: 3.0em;
+        }
+
+        .info h4, .meta {
+            font-size: 0.7em
+        }
+
+        @media only screen and (min-width: 2250px) {
+            .info h1 {
+                margin-top: -50%;
+            }
+        }
+
+        @media only screen and (min-width: 2000px) {
+            .info h1 {
+                margin-top: -10%;
+            }
+        }
+
+        @media only screen and (min-width: 1500px) {
+            .info h1 {
+                margin-top: -5%;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .info h1 {
+                margin-top: 9%;
+                font-size: 2.3em;
+                text-align: center;
+            }
+
+            .header {
+                height: 45vh;
+            }
+        }
+
+        @media only screen and (max-width: 660px) {
+            .info h1 {
+                margin-top: 10%;
+                font-size: 2.3em;
+            }
+
+            .header {
+                height: 40vh
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .header {
+                height: 35vh
+            }
+        }
+
+        @media only screen and (max-width: 560px) {
+            .info h1 {
+                margin-top: 15%;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .header {
+                height: 30vh
+            }
+        }
+
+        @media only screen and (max-width: 470px) {
+            .info h1 {
+                margin-top: 10%;
+                font-size: 1.9em;
+            }
+        }
+
+        @media only screen and (max-width: 450px) {
+            .header {
+                height: 25vh
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            .info h1 {
+                margin-top: 15%;
+            }
+        }
+
+        @media only screen and (max-width: 350px) {
+            .info h1 {
+                margin-top: 18%;
+            }
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scale(1)
+            }
+            50% {
+                transform: scale(1.2)
+            }
+        }
+
+        /*  ======================
+            HEADER BANNER STYLE END
+            ==========================
+            */
     </style>
 
     <script>window.dataLayer = window.dataLayer || [];
@@ -184,52 +371,57 @@
 {% include 'header.html' %}
 
 <div class="mainpage" style="overflow-x: hidden">
-    <div class="mainpage-heading">
-        <div class="container">
-            <h1 class="display-3">About mlf-core</h1>
-            <p class="lead">Details about the mlf-core project - who is involved and how it was started.</p></div>
+    <div class="header">
+        <div class="info">
+            <h1 style="font-family: 'Righteous', cursive; font-weight: normal;">About mlf-core</h1>
+        </div>
     </div>
-
-    <div class="triangle triangle-down"></div>
 
     <div class="container main-content">
-        <h2 id="core">Core team</h2>
-        <p>The core team members who administer the mlf-core project are listed below:</p>
-        <div class="col-md-9">
-            <div class="wrap_img">
-                <div class="row">
-                    <div class="outer">
-                        <div class="inner">
-                            <div class="col-md-1">
-                                <div class="zoomin">
-                                    <figure>
-                                        <a href="https://github.com/Zethson">
-                                            <img src="../static/assets/img/about_core_team/lukas.jpeg" alt='missing'/>
-                                            <figcaption><a style="visibility: hidden">move</a>Lukas "Zeth" Heumos</figcaption>
-                                        </a>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+        <!-- Team member section -->
+        <h1 style="font-family: 'Righteous'">The Lead Team</h1>
+        <section id="timeline">
+
+            <div class="tl-item">
+
+                <div class="tl-bg" style="background-image: url('../static/assets/img/about_core_team/lukas.jpeg')"></div>
+
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">Lukas</p>
                 </div>
+
+                <div class="tl-content">
+                    <h1 class="f3 text--accent ttu">Lukas Heumos</h1>
+                    <p>Initiated and developed the mlf-core ecosystem.</p>
+                </div>
+
             </div>
-        </div>
+
+            <div class="tl-item">
+
+                <div class="tl-bg" style="background-image: url('../static/assets/img/about_core_team/philipp.jpg')"></div>
+
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">Philipp</p>
+                </div>
+
+                <div class="tl-content">
+                    <h1 class="f3 text--accent ttu">Philipp Ehmele</h1>
+                    <p>Contributed to mlf-core and system-intelligence.</p>
+                </div>
+
+            </div>
+        </section>
 
         <div class="container">
-            <p>We regularly review members - if you'd like to be involved, join our
-                <a href="https://discord.com/channels/708008788505919599/708008788505919602">Discord</a> server.</p>
+        <h2 id="community"><a href="#community" class="header-link"><span class="fas fa-link"></span></a>Community</h2>
+            <p>If you would like to be involved, join our <a href="https://discord.com/invite/Mv8sAcq">Discord</a> server.</p>
+            <p>We are happy to assist you with any issues and discuss reproducible machine learning with you.</p>
             <p>All mlf-core community members are expected to adhere to our <a href="/code_of_conduct">code of conduct</a>.</p>
-            <h2 id="history"><a href="#history" class="header-link"><span class="fas fa-link"></span></a>History</h2>
-            <p>mlf-core was initially developed by Lukas Heumos (<a href="https://github.com/Zethson">GitHub</a>/<a href="https://twitter.com/LukasHeumos">Twitter</a>).</p>
-            <p>We noticed a strong demand and even requirement for fully deterministic machine learning.</p>
-            <p>To encourage users to adhere to machine learning best practices we developed mlf-core as a tool to tackle this problem.
-                The initial release has been in August 2020 and we're planning to consistently develop mlf-core further together with the open-source community.</p>
         </div>
     </div>
-
     {% include 'footer.html' %}
-
 </div>
 </body>
 </html>
