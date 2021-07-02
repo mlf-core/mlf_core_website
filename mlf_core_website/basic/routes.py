@@ -36,3 +36,8 @@ def code_of_conduct():
 @bp.route('/projects')
 def projects():
     return render_template('projects.html')
+
+
+@bp.route('/poster')
+def poster():
+    return render_template('scipy_poster.html')
